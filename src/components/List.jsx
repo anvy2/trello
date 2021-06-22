@@ -112,7 +112,7 @@ class List extends React.PureComponent {
       return (
         <ListItem
           title={title}
-          data={sortedData}
+          data={[...sortedData]}
           dragState={this.dragState}
           updateDragStart={this.updateDragStart}
           handleDragEnd={this.handleDragEnd}
