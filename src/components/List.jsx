@@ -111,6 +111,7 @@ class List extends React.PureComponent {
       );
       return (
         <ListItem
+          key={title}
           title={title}
           data={[...sortedData]}
           dragState={this.dragState}

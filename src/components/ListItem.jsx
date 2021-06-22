@@ -48,6 +48,7 @@ class ListItem extends React.PureComponent {
     return this.props.data.map((item, idx) => {
       return (
         <div
+          key={item.creationDate}
           style={{
             padding: "20px",
             border: "1px solid",
