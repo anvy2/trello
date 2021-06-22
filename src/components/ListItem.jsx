@@ -61,6 +61,7 @@ class ListItem extends React.PureComponent {
         >
           <div style={{ fontSize: "20px" }}>{item.heading}</div>
           <div>{item.text}</div>
+          <div>{new Intl.DateTimeFormat().format(item.creationDate)}</div>
           <button
             type="button"
             className="add__button delete__button"
