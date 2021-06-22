@@ -34,18 +34,15 @@ class List extends React.PureComponent {
   };
 
   deleteEntry = (key, index) => {
-    console.log(key, index);
     const modifiedParentList = { ...this.state.list }[key];
     modifiedParentList.splice(index, 1);
     const newList = { ...this.state.list, [key]: modifiedParentList };
     this.setState({ list: newList }, () => {
       StorageUtils.setItem(listCount, newList);
-      console.log(this.state.list);
     });
   };
 
   handleDragEnd = () => {
-    console.log(this.dragState);
     if (!this.dragState.current) {
       return;
     }
@@ -78,7 +75,6 @@ class List extends React.PureComponent {
   };
 
   deleteList = (key) => {
-    console.log(newList, key);
     const newList = { ...this.state.list };
     delete newList[key];
     this.setState({ list: newList }, () => {
@@ -95,6 +91,7 @@ class List extends React.PureComponent {
   };
 
   addDataItem = (data, parentKey) => {
+    data.creationDate = new Date();
     const newList = {
       ...this.state.list,
       [parentKey]: [...this.state.list[parentKey], data],
@@ -107,12 +104,15 @@ class List extends React.PureComponent {
 
   renderList = () => {
     const dataArray = Object.entries(this.state.list);
-    console.log(dataArray);
+
     return dataArray.map(([title, data]) => {
+      const sortedData = data.sort(
+        (a, b) => new Date(a.creationDate) - new Date(b.creationDate)
+      );
       return (
         <ListItem
           title={title}
-          data={[...data]}
+          data={sortedData}
           dragState={this.dragState}
           updateDragStart={this.updateDragStart}
           handleDragEnd={this.handleDragEnd}
@@ -140,7 +140,6 @@ class List extends React.PureComponent {
   };
 
   render() {
-    console.log("render parent");
     return (
       <div className="list__wrapper" onDragOver={(e) => e.preventDefault()}>
         <div className="button__container">

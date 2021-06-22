@@ -10,7 +10,6 @@ class Dialog extends React.PureComponent {
   handleDialogClose = (e) => {
     if (!this.dialogRef.current.parentNode.matches(":hover")) {
       this.props.close();
-      console.log("true");
       return;
     }
     e.stopPropagation();

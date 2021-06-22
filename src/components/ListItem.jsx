@@ -77,7 +77,6 @@ class ListItem extends React.PureComponent {
   };
 
   render() {
-    console.log(this.props.title, " render");
     return (
       <div className="listItem__container">
         <div className="heading">
